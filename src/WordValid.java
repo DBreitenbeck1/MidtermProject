@@ -55,7 +55,7 @@ public class WordValid {
 	}
 
 	public boolean lose() {
-		if (chances == 0) {
+		if (chances <= 0) {
 			return true;
 		}
 		return false;

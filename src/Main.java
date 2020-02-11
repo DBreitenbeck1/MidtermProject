@@ -33,7 +33,7 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		
 
-		Player player1 = new Player("James");
+		Player player = createPlayer();
 		
 	
 		
@@ -44,19 +44,19 @@ public class Main {
 		wv.setDifficulty();
 		
 		do {
-			playGame(player1, wv, guessed);
+			playGame(player, wv, guessed);
 		} while (!wv.win() && !wv.lose());
 
 		if (wv.win()) {
 			System.out.println("You won!");
-			player1.win();
+			player.win();
 		} else if (wv.lose()) {	
 			System.out.println("You lost");
-			player1.lose();
+			player.lose();
 			System.out.println(word);
 		}
 	}while(cont());
-	player1.addStat();
+	player.addStat();
 	
 	System.out.println("Good game");
 	
@@ -99,5 +99,13 @@ public class Main {
 		}		
 		
 	}
+	
+	public static Player createPlayer() {
+		Scanner scanner = new Scanner(System.in);
+		String n = Validator.getString(scanner, "Enter Player name");
+		Player p = new Player(n);
+		return p;
+	}
+	
 
 }
