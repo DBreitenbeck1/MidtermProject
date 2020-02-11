@@ -8,7 +8,7 @@ public class Main {
 
 	private static FileHelper<String> fileHelper = new FileHelper<>("src/wordseasy.txt", new WordLineConverter());
 	private static FileHelper<Player> fileHelper2 = new FileHelper<>("src/stats.txt", new StatLineConverter());
-	private FileHelper<String> fileHelper3 = new FileHelper<>("src/hardwords.txt", new WordLineConverter());
+	private static FileHelper<String> fileHelper3 = new FileHelper<>("src/hardwords.txt", new WordLineConverter());
 
 	public static void main(String[] args) {
 
@@ -16,13 +16,33 @@ public class Main {
 
 		Player player = createPlayer();
 
+
+		
+		
 		do {
 
 			ArrayList<Character> guessed = new ArrayList<>();
-			String word = randWord(fileHelper);
+			String word="";
 			WordValid wv = new WordValid(word);
 			wv.setDifficulty();
-
+			switch (wv.getDif()) {
+			case EASY:{
+				word = randWord(fileHelper);
+				break;
+			}
+			case MEDIUM:{
+				word = randWord(fileHelper);
+				break;
+			}
+			case HARD:{
+				word = randWord(fileHelper3);
+				break;
+			}
+			
+			}
+			//String word = randWord(fileHelper);
+			wv.setWord(word);
+			wv.breakWord(word);
 			do {
 				playGame(player, wv, guessed);
 			} while (!wv.win() && !wv.lose());
@@ -67,6 +87,9 @@ public class Main {
 
 	}
 
+	
+	
+	
 	public static String randWord(FileHelper filehelper) {
 		List<String> words = filehelper.readAll();
 		int rand = (int) (Math.random() * words.size());

@@ -15,6 +15,9 @@ public class WordValid {
 
 	public WordValid(String word) {
 		this.word = word;
+	}
+	
+	public void breakWord(String word) {
 		letters = new char[word.length()];
 		for (int i = 0; i < word.length(); i++) {
 			letters[i] = word.charAt(i);
@@ -24,9 +27,11 @@ public class WordValid {
 		for (int i = 0; i < word.length(); i++) {
 			under[i] = '_';
 		}
-
 	}
-
+	
+	public void setWord(String w) {
+		this.word=w;
+	}
 	public String getWord() {
 		return word;
 	}
