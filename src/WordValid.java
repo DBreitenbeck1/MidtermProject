@@ -7,8 +7,7 @@ public class WordValid {
 	private int misses;
 	private int hits;
 	private Difficulty dif;
-	private int chances = dif.getChances();
-	
+	private int chances;
 
 	public WordValid() {
 
@@ -31,10 +30,11 @@ public class WordValid {
 	public String getWord() {
 		return word;
 	}
-	
+
 	public int getHits() {
 		return hits;
 	}
+
 	public int getMisses() {
 		return misses;
 	}
@@ -53,6 +53,16 @@ public class WordValid {
 		}
 		System.out.println();
 	}
+	
+	public boolean lose() {
+		boolean loss = chances == misses;
+		return loss;
+	}
+	
+	public boolean win() {
+		boolean won = letters == under;
+		return won;
+	}
 
 	public boolean valid(char entry) {
 		boolean hit = false;
@@ -68,43 +78,44 @@ public class WordValid {
 		return hit;
 
 	}
-	
+
 	public void hit() {
-		hits +=1;
+		hits += 1;
 	}
-	
+
 	public void miss() {
-		misses +=1;
+		misses += 1;
 		chances--;
 	}
-	
-	
-	
+
 	public int getChances() {
 		return chances;
 	}
 
 	public void setDifficulty() {
 		Scanner scnr = new Scanner(System.in);
-		
+
 		String difficulty = Validator.getString(scnr, "Enter difficulty: ");
-		
+
 		switch (difficulty.toLowerCase()) {
 		case "easy":
 			dif = Difficulty.EASY;
+			chances = dif.getChances();
 			break;
 		case "medium":
 			dif = Difficulty.MEDIUM;
+			chances = dif.getChances();
 			break;
 		case "hard":
 			dif = Difficulty.HARD;
+			chances = dif.getChances();
 		default:
 			setDifficulty();
 
 		}
 		scnr.close();
 	}
-	
+
 	public Difficulty getDif() {
 		return dif;
 	}
