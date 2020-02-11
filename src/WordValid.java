@@ -53,6 +53,13 @@ public class WordValid {
 		}
 		System.out.println();
 	}
+	
+	public void showLetters() {
+		for (char c : letters) {
+			System.out.print(c + " ");
+		}
+		System.out.println();
+	}
 
 	public boolean lose() {
 		if (chances <= 0) {

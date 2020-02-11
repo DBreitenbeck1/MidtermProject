@@ -2,13 +2,14 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.*;
 
 public class Player {
 	private static FileHelper<Player> fileHelper2 = new FileHelper<>("src/stats.txt", new StatLineConverter());
 	String name;
 	int wins;
 	int loses;
-	static final Comparator<Player> WIN_ORDER = new Comparator<>() {
+	static final Comparator<Player> WIN_ORDER = new Comparator<Player>() {
 
 		@Override
 		public int compare(Player player1, Player player2) {
