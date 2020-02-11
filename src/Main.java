@@ -1,34 +1,43 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Main {
 
 	private static FileHelper<String> fileHelper = new FileHelper<>("src/wordseasy.txt", new WordLineConverter());
-	
+
 	public static void main(String[] args) {
-	
-	//fileHelper.rewrite(objects);
-	 Scanner scanner = new Scanner(System.in);
+
+		// fileHelper.rewrite(objects);
+		Path path1 = Paths.get("src/wordseasy.txt");
+		if (Files.notExists(path1)) {
+			try {
+				Files.createFile(path1);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		Scanner scanner = new Scanner(System.in);
 		WordValid wv = new WordValid("hello");
 
 		Player player1 = new Player("James");
 		wv.setDifficulty();
-		
-			
-		
+
 		do {
 			playGame(player1, wv);
 		} while (!wv.win() && !wv.lose());
-	
-		if(wv.win()) {
+
+		if (wv.win()) {
 			System.out.println("You won!");
-		}else if (wv.lose()) {
+		} else if (wv.lose()) {
 			System.out.println("You lost");
 		}
 
-		
-
 	}
-	
+
 	public static void playGame(Player player, WordValid word) {
 		Scanner scan = new Scanner(System.in);
 		word.showUnder();
@@ -38,11 +47,9 @@ public class Main {
 			System.out.println("Hit!");
 		} else {
 			System.out.println("Miss!");
-			//System.out.println(word.getMisses());
+			// System.out.println(word.getMisses());
 		}
-				
-	}
 
-	
+	}
 
 }
