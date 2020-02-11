@@ -10,8 +10,10 @@ public class StatLineConverter implements LineConverter<Player> {
 	@Override
 	public Player fromLine(String line) {
 		String[] list = line.split("\t");
+		int wins = Integer.parseInt(list[0]);
+		int losses = Integer.parseInt(list[1]);
 		String name = list[2];
-		return new Player(name);
+		return new Player(wins, losses, name);
 	}
 	
 

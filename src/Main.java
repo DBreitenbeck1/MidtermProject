@@ -58,6 +58,10 @@ public class Main {
 	}while(cont());
 	player.addStat();
 	
+	
+	FileHelper<Player> fileHelper2 = new FileHelper<>("src/stats.txt", new StatLineConverter());
+	displayStat(fileHelper2);
+	
 	System.out.println("Good game");
 	
 	}
@@ -102,9 +106,21 @@ public class Main {
 	
 	public static Player createPlayer() {
 		Scanner scanner = new Scanner(System.in);
-		String n = Validator.getString(scanner, "Enter Player name");
+		String n = Validator.getString(scanner, "Enter Player name: ");
 		Player p = new Player(n);
 		return p;
+	}
+	
+	public static void displayStat(FileHelper fileHelper) { //location of filehelper tho
+		List<Player> players = fileHelper.readAll();  
+		
+		Collections.sort(players, Player.WIN_ORDER);	
+		
+		System.out.printf("%10s %10s %20s\n", "Wins", "Losses", "User");
+		for (Player player : players) {
+			System.out.printf("%10d %10d %20s\n", player.getWins(), player.getLoses(), player.getName());
+		}
+		System.out.println();
 	}
 	
 
