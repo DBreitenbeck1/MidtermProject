@@ -146,8 +146,8 @@ public class Validator {
 		boolean isValid = false;
 		char input=' ';
 		do {
-			String in = getString(scnr, prompt).trim().toLowerCase();
-
+			System.out.println(prompt);
+			String in = scnr.nextLine().trim().toLowerCase(); 
 			if (in.matches("[a-z]")) {
 				isValid = true;
 				input = in.charAt(0);

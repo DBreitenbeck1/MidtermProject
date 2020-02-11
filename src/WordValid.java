@@ -53,15 +53,21 @@ public class WordValid {
 		}
 		System.out.println();
 	}
-	
+
 	public boolean lose() {
-		boolean loss = chances == misses;
-		return loss;
+		if (chances == 0) {
+			return true;
+		}
+		return false;
 	}
-	
+
 	public boolean win() {
-		boolean won = letters == under;
-		return won;
+		for (char c : under) {
+			if (c == '_') {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public boolean valid(char entry) {
@@ -85,7 +91,7 @@ public class WordValid {
 
 	public void miss() {
 		misses += 1;
-		chances--;
+		chances-=1;
 	}
 
 	public int getChances() {
@@ -109,11 +115,10 @@ public class WordValid {
 		case "hard":
 			dif = Difficulty.HARD;
 			chances = dif.getChances();
+			break;
 		default:
 			setDifficulty();
-
 		}
-		scnr.close();
 	}
 
 	public Difficulty getDif() {
