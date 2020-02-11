@@ -7,6 +7,8 @@ import java.util.*;
 public class Main {
 
 	private static FileHelper<String> fileHelper = new FileHelper<>("src/wordseasy.txt", new WordLineConverter());
+	private static FileHelper<Player> fileHelper2 = new FileHelper<>("src/stats.txt", new StatLineConverter());
+	private FileHelper<String> fileHelper3 = new FileHelper<>("src/hardwords.txt", new WordLineConverter());
 
 	public static void main(String[] args) {
 
@@ -15,6 +17,7 @@ public class Main {
 		Player player = createPlayer();
 
 		do {
+
 			ArrayList<Character> guessed = new ArrayList<>();
 			String word = randWord(fileHelper);
 			WordValid wv = new WordValid(word);
@@ -41,6 +44,9 @@ public class Main {
 
 		System.out.println("Good game");
 
+
+		
+	
 	}
 
 	public static void playGame(Player player, WordValid word, ArrayList<Character> list) {
@@ -72,7 +78,9 @@ public class Main {
 	public static boolean cont() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println();
-		String cont = Validator.getStringMatchingRegex(scan, "Do you want to go again?[y/n]", "[y,n]");
+
+		String cont = Validator.getStringMatchingRegex(scan, "Do you want to go again?[y/n] ", "[y,n]"); 
+
 		if (cont.equals("y")) {
 			return true;
 		} else {
@@ -88,10 +96,13 @@ public class Main {
 		return p;
 	}
 
-	public static void displayStat(FileHelper fileHelper) { // location of filehelper tho
-		List<Player> players = fileHelper.readAll();
-
-		Collections.sort(players, Player.WIN_ORDER);
+	
+	public static void displayStat(FileHelper fileHelper) { //location of filehelper tho
+		List<Player> players = fileHelper.readAll();  
+		
+		Collections.sort(players, Player.WIN_ORDER);	
+		
+		System.out.printf("%21s\n", "Top 5");
 
 		System.out.printf("%10s %10s %20s\n", "Wins", "Losses", "User");
 		for (Player player : players.subList(0, 5)) {

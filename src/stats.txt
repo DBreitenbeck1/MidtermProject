@@ -7,8 +7,4 @@
 0	1	jill
 0	1	rana
 1	1	amanda
-1	0	Ted
-0	1	Ted
-2	1	Ted
-0	1	Ted
-3	1	Ted
+0	1	seann
