@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Player {
+	private static FileHelper<Player> fileHelper2 = new FileHelper<>("src/stats.txt", new StatLineConverter());
 	String name;
 	int wins;
 	int loses;
@@ -35,6 +36,10 @@ public class Player {
 
 	public void lose() {
 		this.loses += 1;
+	}
+	
+	public void addStat() {
+		fileHelper2.append(this);
 	}
 
 }
