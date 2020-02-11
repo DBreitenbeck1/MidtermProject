@@ -1,17 +1,17 @@
+import java.util.Scanner;
 
 public class Player {
 	String name; 
 	
 	int wins;
 	int loses;
-	Difficulty dif;
 	
 	
-	public Player (String name, Difficulty dif) {
+	
+	public Player (String name) {
 		this.name = name;
 		this.wins=0;
 		this.loses=0;
-		this.dif = dif;
 		//Validate difficulty entry
 		
 	}
@@ -34,7 +34,6 @@ public class Player {
 	public void setLoses(int loses) {
 		this.loses = loses;
 	}
-	
-	
+
 	
 }

@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class WordValid {
 	private String word;
@@ -5,6 +6,8 @@ public class WordValid {
 	private char[] under;
 	private int misses;
 	private int hits;
+	private Difficulty dif;
+	private int chances = dif.getChances();
 	
 
 	public WordValid() {
@@ -48,6 +51,7 @@ public class WordValid {
 		for (char c : under) {
 			System.out.print(c + " ");
 		}
+		System.out.println();
 	}
 
 	public boolean valid(char entry) {
@@ -57,6 +61,9 @@ public class WordValid {
 				under[i] = entry;
 				hit = true;
 			}
+		}
+		if (!hit) {
+			miss();
 		}
 		return hit;
 
@@ -68,6 +75,38 @@ public class WordValid {
 	
 	public void miss() {
 		misses +=1;
+		chances--;
+	}
+	
+	
+	
+	public int getChances() {
+		return chances;
+	}
+
+	public void setDifficulty() {
+		Scanner scnr = new Scanner(System.in);
+		
+		String difficulty = Validator.getString(scnr, "Enter difficulty: ");
+		
+		switch (difficulty.toLowerCase()) {
+		case "easy":
+			dif = Difficulty.EASY;
+			break;
+		case "medium":
+			dif = Difficulty.MEDIUM;
+			break;
+		case "hard":
+			dif = Difficulty.HARD;
+		default:
+			setDifficulty();
+
+		}
+		scnr.close();
+	}
+	
+	public Difficulty getDif() {
+		return dif;
 	}
 
 }

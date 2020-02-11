@@ -1,24 +1,34 @@
 import java.util.*;
+
 public class Main {
 
+	private static Scanner scanner = new Scanner(System.in);
+	
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-	
-	WordValid wv = new WordValid("Ambidexterous");
-	Player p1 = new Player("Ted", Difficulty.EASY);
-	
-	char t = Validator.getChar(scanner, "Enter Letter: ");
-	if(wv.valid(t)){
-		wv.hit();
-	}else {
-		wv.miss();
-	}
-	System.out.println();
-	wv.showUnder();
-	System.out.println();
-	System.out.println(wv.getHits());
-	System.out.println(wv.getMisses());
-	
+
+		
+		WordValid wv = new WordValid("hello");
+
+		Player player1 = new Player("James");
+		wv.setDifficulty();
+		
+		
+		playGame(player1, wv);
+		wv.getChances();
+		
+		
+
+		
+
 	}
 	
+	public static void playGame(Player player, WordValid word) {
+		word.showUnder();
+		char letter = Validator.getChar(scanner, "Guess a letter: ");
+		word.valid(letter);
+		
+	}
+
+	
+
 }
