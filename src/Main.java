@@ -37,7 +37,6 @@ public class Main {
 			}
 			
 			}
-			//String word = randWord(fileHelper);
 			wv.setWord(word);
 			wv.breakWord(word);
 			do {
