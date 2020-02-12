@@ -58,6 +58,7 @@ public class Player {
 	}
 
 	public void win() {
+		
 		this.wins += 1;
 	}
 

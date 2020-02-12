@@ -13,6 +13,11 @@ public class Main {
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
+		
+		List<Integer> totalGuesses = new ArrayList<>();
+		
+		int numberPlays = 0;
+		int averageGuesses;
 
 		Player player = createPlayer();
 		
@@ -37,6 +42,8 @@ public class Main {
 			}
 			
 			}
+			System.out.println(word); //delete
+			
 			wv.setWord(word);
 			wv.breakWord(word);
 			do {
@@ -45,6 +52,7 @@ public class Main {
 
 			if (wv.win()) {
 				System.out.println("You won!");
+				totalGuesses.add(wv.guesses());
 				player.win();
 				wv.showLetters();
 			} else if (wv.lose()) {
@@ -52,7 +60,9 @@ public class Main {
 				player.lose();
 				wv.showLetters();
 			}
+			numberPlays++;
 		} while (cont());
+		System.out.println(averageChances(totalGuesses, numberPlays));
 		player.addStat();
 
 		FileHelper<Player> fileHelper2 = new FileHelper<>("src/stats.txt", new StatLineConverter());
@@ -128,6 +138,16 @@ public class Main {
 			System.out.printf("%10d %10d %20s\n", player.getWins(), player.getLoses(), player.getName());
 		}
 		System.out.println();
+	}
+	
+	public static int averageChances (List<Integer> totalGuesses, int totalPlays) {
+		int sum = 0;
+		for (Integer guess: totalGuesses) {
+			sum += guess;
+		}
+		int avg = sum/totalPlays;
+		return avg;
+		
 	}
 
 }

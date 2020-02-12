@@ -88,6 +88,7 @@ public class WordValid {
 			if (word.charAt(i) == entry) {
 				under[i] = entry;
 				hit = true;
+				hit();
 			}
 		}
 		if (!hit) {
@@ -135,6 +136,11 @@ public class WordValid {
 
 	public Difficulty getDif() {
 		return dif;
+	}
+	
+	public int guesses() {
+		int tot = hits + misses;
+		return tot;
 	}
 
 }
