@@ -1,5 +1,5 @@
 
-public class art {
+public class Art {
 
 	public static void hang(WordValid w) {
 		switch (w.getDif()) {

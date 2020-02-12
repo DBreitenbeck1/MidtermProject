@@ -40,7 +40,6 @@ public class Main {
 			}
 			
 			}
-			//String word = randWord(fileHelper);
 			wv.setWord(word);
 			wv.breakWord(word);
 			do {
@@ -81,7 +80,7 @@ public class Main {
 		} else {
 			System.out.println("Miss!");
 			list.add(letter);
-			art.hang(word);
+			Art.hang(word);
 		}
 		System.out.println(list);
 
