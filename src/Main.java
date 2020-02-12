@@ -15,9 +15,6 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 
 		Player player = createPlayer();
-
-
-		
 		
 		do {
 
@@ -81,7 +78,7 @@ public class Main {
 		} else {
 			System.out.println("Miss!");
 			list.add(letter);
-			art.hang(word);
+			Art.hang(word);
 		}
 		System.out.println(list);
 
