@@ -1,14 +1,9 @@
-0	2	james
-0	3	amanda
-2	1	sam
-0	1	sean
-0	1	bill
-0	1	kyle
-0	1	jill
-0	1	rana
-1	1	amanda
-0	1	seann
-1	0	Ted
-1	3	Ted
-2	0	wesley
-2	0	rel
+2	0	Ted	0
+2	0	Ted	0
+2	0	Ted	7
+2	0	Ted	7
+2	0	Ted	6
+2	0	Ted	6
+2	0	Ted	10
+1	0	Ted	7
+1	0	Ted	13

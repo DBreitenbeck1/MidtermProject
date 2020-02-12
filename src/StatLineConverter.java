@@ -3,7 +3,7 @@ public class StatLineConverter implements LineConverter<Player> {
 
 	@Override
 	public String toLine(Player object) {
-		return String.format("%d\t%d\t%s", object.getWins(),object.getLoses(),object.getName());
+		return String.format("%d\t%d\t%s\t%d", object.getWins(),object.getLoses(),object.getName(), object.getAvgGuess());
 				
 	}
 
@@ -13,7 +13,8 @@ public class StatLineConverter implements LineConverter<Player> {
 		int wins = Integer.parseInt(list[0]);
 		int losses = Integer.parseInt(list[1]);
 		String name = list[2];
-		return new Player(wins, losses, name);
+		int avgGuess = Integer.parseInt(list[3]);
+		return new Player(wins, losses, name, avgGuess);
 	}
 	
 

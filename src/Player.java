@@ -9,6 +9,7 @@ public class Player {
 	String name;
 	int wins;
 	int loses;
+	int avgGuesses; 
 	static final Comparator<Player> WIN_ORDER = new Comparator<Player>() {
 
 		@Override
@@ -28,7 +29,8 @@ public class Player {
 		}
 		
 	};
-
+	
+	
 	public Player(String name) {
 		this.name = name;
 		this.wins = 0;
@@ -37,12 +39,21 @@ public class Player {
 
 	}
 	
-	public Player(int wins, int losses, String name) {
+	public Player(int wins, int losses, String name, int avgGuess) {
 		this.name = name;
 		this.wins = wins;
 		this.loses = losses;
+		this.avgGuesses = avgGuess;
 		// Validate difficulty entry
 
+	}
+	
+	public void setAvgGuess(int avgGuess) {
+		this.avgGuesses = avgGuess;
+	}
+	
+	public int getAvgGuess() {
+		return avgGuesses;
 	}
 
 	public String getName() {

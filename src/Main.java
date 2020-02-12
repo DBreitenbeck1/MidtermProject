@@ -62,9 +62,10 @@ public class Main {
 			}
 			numberPlays++;
 		} while (cont());
-		System.out.println(averageChances(totalGuesses, numberPlays));
+		int avgG = averageChances(totalGuesses, numberPlays);
+		System.out.println(avgG);
+		player.setAvgGuess(avgG);
 		player.addStat();
-
 		FileHelper<Player> fileHelper2 = new FileHelper<>("src/stats.txt", new StatLineConverter());
 		displayStat(fileHelper2);
 
@@ -131,12 +132,21 @@ public class Main {
 		
 		Collections.sort(players, Player.WIN_ORDER);	
 		
-		System.out.printf("%21s\n", "Top 5");
+		System.out.printf("%30s\n", "Top 5");
+		System.out.printf("%30s\n", "#####");
 
-		System.out.printf("%10s %10s %20s\n", "Wins", "Losses", "User");
+		System.out.printf("%10s %10s %20s %20s\n", "Wins", "Losses", "Avg Guesses", "User");
+		System.out.printf("%10s %10s %20s %20s\n", "----", "------", "-----------", "----");
+		if (players.size()>5) {
 		for (Player player : players.subList(0, 5)) {
-			System.out.printf("%10d %10d %20s\n", player.getWins(), player.getLoses(), player.getName());
+			System.out.printf("%10d %10d %20d %20s\n", player.getWins(), player.getLoses(), player.getAvgGuess(), player.getName());
 		}
+		}else {
+			for (Player player : players) {
+				System.out.printf("%10d %10d %20d %20s\n", player.getWins(), player.getLoses(), player.getAvgGuess(), player.getName());
+			}
+		}
+		
 		System.out.println();
 	}
 	
