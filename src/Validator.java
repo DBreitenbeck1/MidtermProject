@@ -13,7 +13,7 @@ public class Validator {
 	 * Get any valid integer.
 	 */
 	public static int getInt(Scanner scnr, String prompt) {
-		// This approach use "hasNext" look ahead.
+		// This approach uses "hasNext" look ahead.
 		System.out.print(prompt);
 		while (!scnr.hasNextInt()) {
 			scnr.nextLine(); // clear bad line.
@@ -30,7 +30,7 @@ public class Validator {
 	 */
 	
 	public static int getYear(Scanner scnr, String prompt) {
-		// This approach use "hasNext" look ahead.
+		// This approach uses "hasNext" look ahead.
 		System.out.print(prompt);
 		while (!scnr.hasNextInt()) {
 			scnr.nextLine(); // clear bad line.
@@ -54,7 +54,7 @@ public class Validator {
 	 * Get any valid double.
 	 */
 	public static double getDouble(Scanner scnr, String prompt) {
-		// This approach use "hasNext" look ahead.
+		// This approach uses "hasNext" look ahead.
 		boolean isValid = false;
 		do {
 			System.out.print(prompt);
@@ -147,6 +147,7 @@ public class Validator {
 	
 	
 	public static char getChar(Scanner scnr, String prompt) {
+		//validates that the user has inputed a single character. 
 		boolean isValid = false;
 		char input=' ';
 		do {

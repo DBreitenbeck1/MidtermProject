@@ -1,4 +1,8 @@
-
+/*
+ * 
+ * @author Amanda Campos and David Breitenbeck
+ *
+ */
 
 
 import java.util.ArrayList;

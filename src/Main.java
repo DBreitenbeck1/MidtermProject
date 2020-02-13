@@ -8,9 +8,8 @@ import java.util.*;
 
 public class Main {
 
-	// Creating FileHelpers instances for each text file that is going to utilized
-	// and accessed throughout
-	// the entire Main class.
+	// Creates FileHelper instances for each text file that is going to be
+	// accessed in the Main class.
 
 	private static FileHelper<Player> fileHelperStat = new FileHelper<>("src/stats.txt", new StatLineConverter());
 	private static FileHelper<String> fileHelperEasyMediumW = new FileHelper<>("src/easymediumwords.txt", new WordLineConverter());
@@ -20,12 +19,12 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		// The following ArrayList keeps track of how many guesses the player needed to
-		// correctly discover the word
+		// The 'totalGuesses' ArrayList keeps track of the number of
+		// guesses the player needed to find the correct word
 
 		List<Integer> totalGuesses = new ArrayList<>();
 
-		// The String is necessary to instantiate a WordValid object
+		// The String 'word' is necessary to instantiate a WordValid object
 		String word = "";
 		
 		int numberPlays = 0;
@@ -34,16 +33,16 @@ public class Main {
 
 		do {
 
-			// This List keeps track of the letters that have already been tried and were
-			// not a match
+			// The 'guessed' ArrayList keeps track of 
+			//the letters that have already been tried and were not a match
 			ArrayList<Character> guessed = new ArrayList<>();
 			WordValid wv = new WordValid();
 
-			// If the difficulty is set to Easy or Medium, the program uses the
-			// wordseasy.txt
-			// to randomly select a word. If the difficulty is set to Hard, the program uses
-			// hardwords.txt
-			// to randomly select a word.
+			/*
+			 *  If the difficulty is set to Easy or Medium, the program selects a 
+			 *  random word from the easymediumwords.txt file. 
+			 *  If Hard, it selects from the hardwords.txt file.
+			 */
 			switch (wv.setDifficulty()) {
 			case EASY:
 				word = randWord(fileHelperEasyMediumW);
@@ -73,7 +72,7 @@ public class Main {
 			} else if (wv.lose()) {
 				System.out.println("You lost!");
 				player.lose();
-				System.out.print("Word you missed: ");
+				System.out.print("Correct word: ");
 				wv.showLetters();
 			}
 			numberPlays++;
@@ -86,8 +85,6 @@ public class Main {
 		// The statistics of the match are added to stats.txt
 		player.addStat(fileHelperStat);
 
-		// FileHelper<Player> fileHelper2 = new FileHelper<>("src/stats.txt", new
-		// StatLineConverter());
 		displayStat(fileHelperStat);
 
 		System.out.print("Good game!");
@@ -99,23 +96,25 @@ public class Main {
 
 		System.out.print("\nWord: ");
 
-		// The game displays each letter of the word in undescores
+		// The game displays an underscore for each letter in the word
 		word.showUnder();
 
 		// The number of remaining chances is displayed
-		System.out.println("Remaining guesses: " + word.getChances());
-		System.out.println("Letters you tried missed: " + list);
+		System.out.println("Remaining Guesses: " + word.getChances());
+		System.out.println("Already Guessed: " + list);
 
+		//The guess is received and checked by the word valid class
 		char letter = Validator.getChar(scanner, "\nGuess a letter: ");
 		if (word.valid(letter)) {
 			System.out.println("Hit!");
 		} else {
 			System.out.println("Miss!");
 
-			// The letter is added to a list that keeps track of incorrect guesses
+			// The letter is added to the 'guessed' ArrayList
 			list.add(letter);
 
-			// An art is display representing how many chances are left
+			// The progressive 'hangman' artwork is displayed,
+			// representing how many chances the player has left
 			Art.hang(word);
 		}
 
@@ -124,7 +123,7 @@ public class Main {
 	public static String randWord(FileHelper<String> filehelper) {
 
 		// A list of all the words in the selected text files is initialized, and
-		// a word is randomly selected from the List
+		// a random word is selected
 
 		List<String> words = filehelper.readAll();
 		int rand = (int) (Math.random() * words.size());
@@ -134,7 +133,8 @@ public class Main {
 
 	public static boolean cont() {
 
-		// This method returns the user's choince on continuing or quitting the game
+		// This method asks if the user would like to
+		// to play again and returns his choice.
 		System.out.println();
 
 		String cont = Validator.getStringMatchingRegex(scanner, "Do you want to play again?[y/n] ", "[y,n]");
@@ -152,14 +152,14 @@ public class Main {
 		return new Player(username);
 	}
 
-	public static void displayStat(FileHelper<Player> fileHelper) { // location of filehelper tho
+	public static void displayStat(FileHelper<Player> fileHelper) { 
 		List<Player> players = fileHelper.readAll();
 
 		// The Collection.sort method sorts a list of Players based on Wins Percentage
 
 		Collections.sort(players, Player.WIN_ORDER);
 
-		// The Top 5 Players available on stats.txt is displayed
+		// The Top 5 Players available on stats.txt are displayed
 
 		System.out.printf("\n%30s\n", "Top 5");
 		System.out.printf("%30s\n", "#####");
@@ -171,8 +171,8 @@ public class Main {
 				System.out.printf("%5d %10d %15d %15d %15s\n", player.getWins(), player.getLosses(),
 						player.getAvgGuess(), player.getAvgWins(), player.getName());
 			}
-			// The "else" command is necessary in case there's less than 5 players on the
-			// file
+			// This 'if' Statement checks if there are more than five players and, if so,
+			// only displays the top five
 		} else {
 			for (Player player : players) {
 				System.out.printf("%5d %10d %15d %15d %15s\n", player.getWins(), player.getLosses(),
@@ -185,7 +185,7 @@ public class Main {
 
 	public static int averageChances(List<Integer> totalGuesses, int totalPlays) {
 
-		// The method returns the average number of chances necessary for a player to
+		// This method returns the average number of chances necessary for a player to
 		// win a match
 
 		int sum = 0;

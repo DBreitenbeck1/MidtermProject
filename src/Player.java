@@ -81,7 +81,8 @@ public class Player {
 		this.losses += 1;
 	}
 
-	// The method avgWins calculates the percentage of wins amongst all matches of a play
+	// This method calculates the win percentage from the 
+	// total number of matches played in a game.
 	public void avgWins() {
 		double avg = wins / ((double) wins + (double) losses);
 		avgWins = (int) (avg * 100);

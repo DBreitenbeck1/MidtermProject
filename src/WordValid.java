@@ -25,10 +25,14 @@ public class WordValid {
 	
 	
 	public void setWord(String w) {
-		// This method initializes the letters and under Arrays. The letters arrays corresponds to
-		// all the letters in the word, and the under array corresponds to all the letters replaced
-		// by underscores
-		
+		/*
+		 *  This method creates two Arrays:
+		 *  The 'letters' array splits the word into an array of
+		 *  individual letters.
+		 *  The 'under' array creates a corresponding array of underscores
+		 *  to mark the unguessed letters. 
+		 */
+
 		this.word=w;
 		letters = new char[word.length()];
 		for (int i = 0; i < word.length(); i++) {
@@ -61,7 +65,7 @@ public class WordValid {
 	}
 
 	public void showUnder() {
-		// This method display the array of underscores
+		// This method displays the array of underscores
 		
 		for (char c : under) {
 			System.out.print(c + " ");
@@ -70,7 +74,7 @@ public class WordValid {
 	}
 	
 	public void showLetters() {
-		// This method displays array of letters
+		// This method displays the 'letters' array
 		
 		for (char c : letters) {
 			System.out.print(c + " ");
@@ -79,6 +83,9 @@ public class WordValid {
 	}
 
 	public boolean lose() {
+		/*
+		 * If the player runs out of chances, the match is lost
+		 */
 		if (chances <= 0) {
 			return true;
 		}
@@ -86,7 +93,8 @@ public class WordValid {
 	}
 
 	public boolean win() {
-		// If all the underscores have been replaced by letters, the player won the match		
+		// If all the underscores have been replaced by letters, 
+		// the player has won the match		
 		for (char c : under) {
 			if (c == '_') {
 				return false;
@@ -96,7 +104,13 @@ public class WordValid {
 	}
 
 	public boolean valid(char entry) {
-		// This method validates whether the chosen letter exists in the words
+		/*
+		 * This method validates whether 
+		 *  the word contains the chosen letter
+		 *  and, if so, replaces the corresponding underscore with
+		 *  the correct letter 
+		 *   
+		 */
 		
 		boolean hit = false;
 		for (int i = 0; i < word.length(); i++) {
@@ -130,7 +144,8 @@ public class WordValid {
 		Scanner scnr = new Scanner(System.in);
 
 		String difficulty = Validator.getString(scnr, "Enter difficulty [easy/medium/hard]: ");
-
+		//The Difficulty setting determines how many chances the player
+		//will get
 		switch (difficulty.toLowerCase()) {
 		case "easy":
 			dif = Difficulty.EASY;
