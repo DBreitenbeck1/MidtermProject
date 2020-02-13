@@ -1,9 +1,13 @@
-
+/*
+ * 
+ * @author Amanda Campos and David Breitenbeck
+ *
+ */
 public class StatLineConverter implements LineConverter<Player> {
 
 	@Override
 	public String toLine(Player object) {
-		return String.format("%d\t%d\t%s\t%d\t%d", object.getWins(),object.getLoses(),object.getName(), object.getAvgGuess(),object.getAvgWins());
+		return String.format("%d\t%d\t%s\t%d\t%d", object.getWins(),object.getLosses(),object.getName(), object.getAvgGuess(),object.getAvgWins());
 				
 	}
 

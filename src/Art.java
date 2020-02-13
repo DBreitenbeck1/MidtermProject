@@ -1,3 +1,8 @@
+/*
+ * 
+ * @author Amanda Campos and David Breitenbeck
+ *
+ */
 
 public class Art {
 
@@ -132,7 +137,7 @@ public class Art {
 		System.out.println(String.format("\t\t%s", " []"));
 		System.out.println(String.format("\t\t%s", " []"));
 		System.out.println(String.format("\t\t%s", " []"));
-		System.out.println(String.format("\t\t%s", " []"));
+
 	}
 
 	public static void three() {

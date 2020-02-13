@@ -1,4 +1,8 @@
-
+/*
+ * 
+ * @author Amanda Campos and David Breitenbeck
+ *
+ */
 public class WordLineConverter implements LineConverter<String> {
 
 

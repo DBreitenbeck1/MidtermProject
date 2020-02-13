@@ -11,3 +11,13 @@
 0	1	Ted	0	0
 0	1	Ted	0	0
 0	1	Ted	0	0
+1	1	amanda	5	50
+1	1	june	8	50
+0	2	john1	0	0
+0	2	amandabcampos	0	0
+1	1	kyled	4	50
+0	1	joao	0	0
+2	1	bill	7	66
+1	2	sam	2	33
+2	1	joao3	8	66
+2	1	klo	6	66

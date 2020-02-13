@@ -1,96 +1,94 @@
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
-import java.util.*;
+
+
+/*
+ * 
+ * @author Amanda Campos and David Breitenbeck
+ *
+ */
 
 public class Player {
-	private static FileHelper<Player> fileHelper2 = new FileHelper<>("src/stats.txt", new StatLineConverter());
-	String name;
-	int wins;
-	int loses;
-	int avgGuesses; 
-	int averageWins;
+
+	private String name;
+	private int wins;
+	private int losses;
+	private int avgGuesses;
+	private int avgWins;
 	static final Comparator<Player> WIN_ORDER = new Comparator<Player>() {
 
 		@Override
 		public int compare(Player player1, Player player2) {
 			if (player1.getAvgWins() > player2.getAvgWins()) {
 				return -1;
-				
-			}else if(player1.getAvgWins() < player2.getAvgWins()){
-					return 1;
+
+			} else if (player1.getAvgWins() < player2.getAvgWins()) {
+				return 1;
 			}
 			return 0;
 		}
-		
+
 	};
-	
-	
+
 	public Player(String name) {
 		this.name = name;
 		this.wins = 0;
-		this.loses = 0;
-		// Validate difficulty entry
-
+		this.losses = 0;
 	}
-	
+
+	// The overload constructor creates objects based on the Statistics file
 	public Player(int wins, int losses, String name, int avgGuess, int avgWin) {
 		this.name = name;
 		this.wins = wins;
-		this.loses = losses;
+		this.losses = losses;
 		this.avgGuesses = avgGuess;
-		this.averageWins = avgWin;
-		// Validate difficulty entry
+		this.avgWins = avgWin;
 
-	}
-	
-	public void avgWins() {
-		double avg = wins/((double)wins+(double)loses);
-		averageWins = (int)(avg*100);
-	}
-	
-	public int getAvgWins() {
-		return averageWins;
-	}
-	
-	public void setAvgGuess(int avgGuess) {
-		this.avgGuesses = avgGuess;
-	}
-	
-	public int getAvgGuess() {
-		return avgGuesses;
 	}
 
 	public String getName() {
 		return name;
 	}
-
+	
+	public int getWins() {
+		return wins;
+	}
+	
+	public int getLosses() {
+		return losses;
+	}
+	
+	public int getAvgGuess() {
+		return avgGuesses;
+	}
+	
+	public int getAvgWins() {
+		return avgWins;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public int getWins() {
-		return wins;
+	public void setAvgGuess(int avgGuess) {
+		this.avgGuesses = avgGuess;
 	}
 
 	public void win() {
-		
 		this.wins += 1;
 	}
 
-	public int getLoses() {
-		return loses;
+	public void lose() {
+		this.losses += 1;
 	}
 
-	public void lose() {
-		this.loses += 1;
+	// The method avgWins calculates the percentage of wins amongst all matches of a play
+	public void avgWins() {
+		double avg = wins / ((double) wins + (double) losses);
+		avgWins = (int) (avg * 100);
 	}
-	
-	public void addStat() {
-		fileHelper2.append(this);
+
+	public void addStat(FileHelper<Player> fileHelperStat) {
+		fileHelperStat.append(this);
 	}
-	
-	
 
 }

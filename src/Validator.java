@@ -1,7 +1,11 @@
-
-
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
+/*
+ * 
+ * @author Amanda Campos and David Breitenbeck
+ *
+ */
 
 public class Validator {
 
@@ -146,7 +150,7 @@ public class Validator {
 		boolean isValid = false;
 		char input=' ';
 		do {
-			System.out.println(prompt);
+			System.out.print(prompt);
 			String in = scnr.nextLine().trim().toLowerCase(); 
 			if (in.matches("[a-z]")) {
 				isValid = true;

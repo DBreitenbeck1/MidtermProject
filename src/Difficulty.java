@@ -1,4 +1,8 @@
-
+/*
+ * 
+ * @author Amanda Campos and David Breitenbeck
+ *
+ */
 public enum Difficulty {
 	EASY(9),MEDIUM(6),HARD(3);
 	
