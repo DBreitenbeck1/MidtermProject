@@ -13,37 +13,34 @@ public class Main {
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
-		
+
 		List<Integer> totalGuesses = new ArrayList<>();
-		
+		String word = "";
 		int numberPlays = 0;
 		int averageGuesses;
 
 		Player player = createPlayer();
-		
+
 		do {
 
 			ArrayList<Character> guessed = new ArrayList<>();
-			String word="";
-			WordValid wv = new WordValid(word);
-			wv.setDifficulty();
-			switch (wv.getDif()) {
-			case EASY:{
+			WordValid wv = new WordValid();
+			switch (wv.setDifficulty()) {
+			case EASY: {
 				word = randWord(fileHelper);
 				break;
 			}
-			case MEDIUM:{
+			case MEDIUM: {
 				word = randWord(fileHelper);
 				break;
 			}
-			case HARD:{
+			case HARD: {
 				word = randWord(fileHelper3);
 				break;
 			}
-			
+
 			}
 			wv.setWord(word);
-			wv.breakWord(word);
 			do {
 				playGame(player, wv, guessed);
 			} while (!wv.win() && !wv.lose());
@@ -64,15 +61,12 @@ public class Main {
 		player.setAvgGuess(avgG);
 		player.avgWins();
 		player.addStat();
-		
+
 		FileHelper<Player> fileHelper2 = new FileHelper<>("src/stats.txt", new StatLineConverter());
 		displayStat(fileHelper2);
-		
+
 		System.out.println("Good game");
 
-
-		
-	
 	}
 
 	public static void playGame(Player player, WordValid word, ArrayList<Character> list) {
@@ -93,9 +87,6 @@ public class Main {
 
 	}
 
-	
-	
-	
 	public static String randWord(FileHelper filehelper) {
 		List<String> words = filehelper.readAll();
 		int rand = (int) (Math.random() * words.size());
@@ -108,7 +99,7 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		System.out.println();
 
-		String cont = Validator.getStringMatchingRegex(scan, "Do you want to go again?[y/n] ", "[y,n]"); 
+		String cont = Validator.getStringMatchingRegex(scan, "Do you want to go again?[y/n] ", "[y,n]");
 
 		if (cont.equals("y")) {
 			return true;
@@ -125,38 +116,39 @@ public class Main {
 		return p;
 	}
 
-	
-	public static void displayStat(FileHelper fileHelper) { //location of filehelper tho
-		List<Player> players = fileHelper.readAll();  
-		
-		Collections.sort(players, Player.WIN_ORDER);	
-		
+	public static void displayStat(FileHelper fileHelper) { // location of filehelper tho
+		List<Player> players = fileHelper.readAll();
+
+		Collections.sort(players, Player.WIN_ORDER);
+
 		System.out.printf("%30s\n", "Top 5");
 		System.out.printf("%30s\n", "#####");
 
 		System.out.printf("%5s %10s %15s %15s %15s\n", "Wins", "Losses", "Avg Guesses", "Win Percent", "User");
 		System.out.printf("%5s %10s %15s %15s %15s\n", "----", "------", "-----------", "-----------", "----");
-		if (players.size()>5) {
-		for (Player player : players.subList(0, 5)) {
-			System.out.printf("%5d %10d %15d %15d %15s\n", player.getWins(), player.getLoses(), player.getAvgGuess(), player.getAvgWins(), player.getName());
-		}
-		}else {
+		if (players.size() > 5) {
+			for (Player player : players.subList(0, 5)) {
+				System.out.printf("%5d %10d %15d %15d %15s\n", player.getWins(), player.getLoses(),
+						player.getAvgGuess(), player.getAvgWins(), player.getName());
+			}
+		} else {
 			for (Player player : players) {
-				System.out.printf("%5d %10d %15d %15d %15s\n", player.getWins(), player.getLoses(), player.getAvgGuess(), player.getAvgWins(), player.getName());
+				System.out.printf("%5d %10d %15d %15d %15s\n", player.getWins(), player.getLoses(),
+						player.getAvgGuess(), player.getAvgWins(), player.getName());
 			}
 		}
-		
+
 		System.out.println();
 	}
-	
-	public static int averageChances (List<Integer> totalGuesses, int totalPlays) {
+
+	public static int averageChances(List<Integer> totalGuesses, int totalPlays) {
 		int sum = 0;
-		for (Integer guess: totalGuesses) {
+		for (Integer guess : totalGuesses) {
 			sum += guess;
 		}
-		int avg = sum/totalPlays;
+		int avg = sum / totalPlays;
 		return avg;
-		
+
 	}
 
 }

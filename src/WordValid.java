@@ -10,14 +10,16 @@ public class WordValid {
 	private int chances;
 
 	public WordValid() {
-
+		this.word="";
 	}
 
 	public WordValid(String word) {
 		this.word = word;
 	}
 	
-	public void breakWord(String word) {
+	
+	public void setWord(String w) {
+		this.word=w;
 		letters = new char[word.length()];
 		for (int i = 0; i < word.length(); i++) {
 			letters[i] = word.charAt(i);
@@ -27,10 +29,6 @@ public class WordValid {
 		for (int i = 0; i < word.length(); i++) {
 			under[i] = '_';
 		}
-	}
-	
-	public void setWord(String w) {
-		this.word=w;
 	}
 	public String getWord() {
 		return word;
@@ -111,7 +109,7 @@ public class WordValid {
 		return chances;
 	}
 
-	public void setDifficulty() {
+	public Difficulty setDifficulty() {
 		Scanner scnr = new Scanner(System.in);
 
 		String difficulty = Validator.getString(scnr, "Enter difficulty: ");
@@ -120,17 +118,18 @@ public class WordValid {
 		case "easy":
 			dif = Difficulty.EASY;
 			chances = dif.getChances();
-			break;
+			return dif;
+			
 		case "medium":
 			dif = Difficulty.MEDIUM;
 			chances = dif.getChances();
-			break;
+			return dif;
 		case "hard":
 			dif = Difficulty.HARD;
 			chances = dif.getChances();
-			break;
+			return dif;
 		default:
-			setDifficulty();
+			return setDifficulty();
 		}
 	}
 
